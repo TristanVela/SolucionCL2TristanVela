@@ -1,0 +1,41 @@
+﻿@model List<AlumnoViewModel>
+@{
+    ViewData["Title"] = "Listado de Alumnos";
+}
+
+<h1>Listado de alumnos</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>IdAlumno</th>
+                <th>NombreAlumno</th>
+                <th>ApellidoAlumno</th>
+                <th>DNI</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Nombre Curso</th>
+                <th>Nota</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdAlumno</td>
+                    <td>@item.NombreAlumno</td>
+                    <td>@item.ApellidoAlumno</td>
+                    <td>@item.DNI</td>
+                    <td>@item.FechaNacimiento.ToShortDateString()</td>
+                    <td>@item.NombreCurso</td>
+                    <td>@item.Nota</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Alumnos" asp-action="Add">Añadir</a>
+                        <a class="btn btn-success" asp-controller="Alumnos" asp-action="Edit" asp-route-id="@item.IdAlumno">Editar</a>
+                        <a class="btn btn-danger" asp-controller="Alumnos" asp-action="Delete" asp-route-id="@item.IdAlumno">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
